@@ -1,5 +1,5 @@
 # DDMgif
-Make an animated gif of a (simplified) accumulation the threshold decision process
+Make an animated gif of a (simplified) accumulation to threshold decision process
 
 Code will generate new plots based on the parameters you feed it
 
