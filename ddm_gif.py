@@ -18,10 +18,10 @@ os.system('rm frames/*.png') #clear saved frames
 nrange=100 #points on x axis
 
 #change these parameters to get different traces
-noise_scale=0.8 #how much noise on our underlying evidence accumulation curves
-seedn=7
+noise_scale=1.8 #how much noise on our underlying evidence accumulation curves
+seedn=127
 y1drift=0.1 
-y2drift=-0.067
+y2drift=-0.1
 np.random.seed(seedn) 
 
 #change these parameters to change the animation
@@ -52,8 +52,8 @@ for i in range(1,nrange):
 
 #make the plot
 fig, ax = plt.subplots()
-plt.xlabel('Time (arbitrary units)')
-plt.ylabel('Cumulative subjective value (arbitrary units)')
+plt.xlabel('Time')
+plt.ylabel('Cumulative weight of evidence')
 plt.xticks([]) #hide tick labels
 plt.yticks([]) #hide tick labels
 plt.ylim([-8,8])
@@ -78,7 +78,7 @@ ax.spines['right'].set_visible(False)
 i=0
 uncrossed=True
 while uncrossed:
-    plt.plot(x[:i],y1[:i],'blue',ls='-',lw=lw)
+    plt.plot(x[:i],y1[:i],'purple',ls='-',lw=lw)
     plt.savefig('frames/'+str(i).zfill(3)+'.png',bbox_inches='tight')
     if (i>1) & (y1[i-1]>t2):
         uncrossed=False
@@ -98,14 +98,15 @@ for j in range(flashn):
     for k in range(waitn):
         plt.savefig('frames/'+str(i).zfill(3)+'.png',bbox_inches='tight');i+=1
 
-plt.plot(x[:Aend],y1[:Aend],'white',ls='-',lw=lw)
+#remove old plot
+plt.plot(x[:Aend],y1[:Aend],'white',ls='-',lw=lw*2)
 
 
 #path 2 in red
 m=0
 uncrossed=True
 while uncrossed:
-    plt.plot(x[:m],y2[:m],'red',ls='-',lw=lw)
+    plt.plot(x[:m],y2[:m],'darkgreen',ls='-',lw=lw)
     plt.savefig('frames/'+str(i).zfill(3)+'.png',bbox_inches='tight')
     if (m>1) & (y2[m-1]<-t2):
         uncrossed=False
